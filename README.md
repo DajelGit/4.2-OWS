@@ -21,3 +21,8 @@ to access the database `hive`. The file `hive.sql` contains the database schema.
 This application is licensed under the MIT license, see `LICENSE.md`. Questions
 and comments can be directed to
 [Ralf van den Broek](https://github.com/ralfvandenbroek).
+
+To start Docker container:
+```
+docker compose up --build
+```
