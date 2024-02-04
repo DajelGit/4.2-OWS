@@ -44,4 +44,16 @@ function slide($board, $from, $to) {
     return min(len($board[$common[0]]), len($board[$common[1]])) <= max(len($board[$from]), len($board[$to]));
 }
 
+function AvailablePositions($board, $hand, $player, $to){
+    if (isset($board[$to])) {
+        return false;
+    } elseif (count($board) && !hasNeighBour($to, $board)) {
+        return false;
+    } elseif (array_sum($hand) < 11 && !neighboursAreSameColor($player, $to, $board)) {
+        return false;
+    }
+    
+    return true;
+}
+
 ?>
