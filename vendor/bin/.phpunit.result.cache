@@ -1,0 +1,1 @@
+{"version":1,"defects":{"UnitTest::testForQueenBug":7,"UnitTest::testCanBeCreatedFromValidEmail":8,"UnitTest::testCannotBeCreatedFromInvalidEmail":7},"times":{"UnitTest::testForQueenBug":0.006,"UnitTest::testCanBeCreatedFromValidEmail":0.001,"UnitTest::testCannotBeCreatedFromInvalidEmail":0.005,"UnitTest::testAvailablePosition":0.007}}
