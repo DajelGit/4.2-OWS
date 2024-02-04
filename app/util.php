@@ -40,8 +40,11 @@ function slide($board, $from, $to) {
         $q = $b[1] + $pq[1];
         if (isNeighbour($from, $p.",".$q)) $common[] = $p.",".$q;
     }
-    if (!$board[$common[0]] && !$board[$common[1]] && !$board[$from] && !$board[$to]) return false;
-    return min(len($board[$common[0]]), len($board[$common[1]])) <= max(len($board[$from]), len($board[$to]));
+    
+    if (!array_key_exists($common[0], $board) || !array_key_exists($common[1], $board)) {
+        return true;
+    }
+    return false;
 }
 
 function AvailablePositions($board, $hand, $player, $to){
@@ -52,7 +55,7 @@ function AvailablePositions($board, $hand, $player, $to){
     } elseif (array_sum($hand) < 11 && !neighboursAreSameColor($player, $to, $board)) {
         return false;
     }
-    
+
     return true;
 }
 
