@@ -19,7 +19,9 @@
         }
     }
     $to = array_unique($to);
-    if (!count($to)) $to[] = '0,0';
+    if (!count($to)) {
+        $to[] = '0,0';
+    }
 ?>
 
 <!DOCTYPE html>
@@ -150,10 +152,9 @@
             <select name="from">
                 <?php
                     foreach (array_keys($board) as $pos) {
-                        if($board[$pos][0][0] != $player) {
-                            continue;
+                        if($board[$pos][0][0] == $player) {
+                            echo "<option value=\"$pos\">$pos</option>";
                         }
-                        echo "<option value=\"$pos\">$pos</option>";
                     }
                 ?>
             </select>
