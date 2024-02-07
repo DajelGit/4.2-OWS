@@ -22,7 +22,9 @@ final class UnitTest extends TestCase
         $player = 0;
         $to = '5,5';
 
-        $this->assertEquals(false, AvailablePositions($board, $hand[$player], $player, $to));
+        $ans = AvailablePositions($board, $hand[$player], $player, $to);
+
+        $this->assertEquals(false, $ans);
     }
 
     # bug #2
@@ -36,7 +38,9 @@ final class UnitTest extends TestCase
         $from = '0,0';
         $to = '0,1';
 
-        $this->assertEquals(true, slide($board, $from, $to));
+        $ans = slide($board, $from, $to);
+
+        $this->assertEquals(true, $ans);
     }
 
     public function testOccupiedPosition(): void
@@ -54,37 +58,31 @@ final class UnitTest extends TestCase
         $player = 0;
         $to = '1,0';
 
-        $this->assertEquals(false, AvailablePositions($board, $hand[$player], $player, $to));
+        $ans = AvailablePositions($board, $hand[$player], $player, $to);
+
+        $this->assertEquals(false, $ans);
     }
-
-    // public function testHasNeighbour(): void
-    // {
-    //     $board = [
-    //         '0,0' => [['0', 'Q']],
-    //         '1,-1' => [['0', 'B']],
-    //         '0,-2' => [['0', 'B']],
-
-    //         '1,0' => [['1', 'Q']],
-    //         '1,1' => [['1', 'B']],
-    //         '1,2' => [['1', 'B']]
-    //     ];
-
-    //     $pos = '0,-2';
-
-    //     $this->assertEquals(false, hasNeighBour($pos, $board));
-
-    // }
 
     public function testIsNeighbour(): void
     {
         $a = '0,0';
         $b = '1,-1';
-        $c = '1,-2';
+
+        $ans = isNeighbour($a, $b);
 
         // wel neighbours
-        $this->assertEquals(true, isNeighbour($a, $b));
+        $this->assertEquals(true, $ans);
+    }
+
+    public function testIsNotNeighbour(): void
+    {
+        $a = '0,0';
+        $b = '1,-2';
+
+        $ans = isNeighbour($a, $b);
+
         // niet neighbours
-        $this->assertEquals(false, isNeighbour($a, $c));
+        $this->assertEquals(false, $ans);
     }
 
     public function testIfEmptyTileHasNeighbour()
@@ -95,7 +93,10 @@ final class UnitTest extends TestCase
         ];
 
         $pos = "0,1";
-        $this->assertEquals(true, HasNeighbour($pos, $board));
+
+        $ans = HasNeighbour($pos, $board);
+
+        $this->assertEquals(true, $ans);
     }
 
 }
