@@ -87,3 +87,43 @@ function AvailablePositions($board, $hand, $player, $to)
 
     return true;
 }
+
+function AvailableGrasshopperPositions($board, $player, $to, $from)
+{
+    if (isset($board[$to])) {
+        return false;
+    }
+    if (count($board) && !hasNeighBour($to, $board)) {
+        return false;
+    }
+    //$test = explode(',', $from);
+    //$aaa = $test[0];
+    //$aaa = $aaa + 1;
+    //echo $aaa;
+    //echo "bbbbbbbb $test[1]";
+    return true;
+}
+
+function AvailableAntPositions($board, $player, $to, $from)
+{
+    if (isset($board[$to])) {
+        return false;
+    }
+    if (count($board) && !hasNeighBour($to, $board)) {
+        return false;
+    }
+
+    return true;
+}
+
+function AvailableSpiderPositions($board, $player, $to, $from)
+{
+    if (isset($board[$to])) {
+        return false;
+    }
+    if (count($board) && !hasNeighBour($to, $board)) {
+        return false;
+    }
+
+    return true;
+}
