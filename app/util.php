@@ -96,11 +96,30 @@ function AvailableGrasshopperPositions($board, $player, $to, $from)
     if (count($board) && !hasNeighBour($to, $board)) {
         return false;
     }
-    //$test = explode(',', $from);
-    //$aaa = $test[0];
-    //$aaa = $aaa + 1;
-    //echo $aaa;
-    //echo "bbbbbbbb $test[1]";
+
+    $f = explode(',', $from);
+    $fx = $f[0];
+    $fy = $f[1];
+    $t = explode(',', $to);
+    $tx = $t[0];
+    $ty = $t[1];
+
+    if ($fx != $tx) {
+        if ($fx > $tx) {
+            $inc = 1;
+        } else {
+            $inc = -1;
+        }
+
+        // while ($fx != $tx) {
+        //     $fx = $fx + $inc;
+        //     // check of fx empty is nu
+        //     // if empty -> return false
+        //     // else return true
+        // }
+
+    }
+
     return true;
 }
 
