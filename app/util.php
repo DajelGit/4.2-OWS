@@ -97,28 +97,27 @@ function AvailableGrasshopperPositions($board, $player, $to, $from)
         return false;
     }
 
-    $f = explode(',', $from);
-    $fx = $f[0];
-    $fy = $f[1];
-    $t = explode(',', $to);
-    $tx = $t[0];
-    $ty = $t[1];
+    // $f = explode(',', $from);
+    // $fx = $f[0];
+    // $fy = $f[1];
+    // $t = explode(',', $to);
+    // $tx = $t[0];
+    // $ty = $t[1];
 
-    if ($fx != $tx) {
-        if ($fx > $tx) {
-            $inc = 1;
-        } else {
-            $inc = -1;
-        }
+    // if ($fx != $tx) {
+    //     if ($fx > $tx) {
+    //         $inc = 1;
+    //     } else {
+    //         $inc = -1;
+    //     }
 
-        // while ($fx != $tx) {
-        //     $fx = $fx + $inc;
-        //     // check of fx empty is nu
-        //     // if empty -> return false
-        //     // else return true
-        // }
-
-    }
+    //     while ($fx != $tx) {
+    //         $fx = $fx + $inc;
+    //         // check of fx empty is nu
+    //         // if empty -> return false
+    //         // else return true
+    //     }
+    // }
 
     return true;
 }

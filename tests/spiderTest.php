@@ -33,6 +33,8 @@ final class SpiderTest extends TestCase
             $ans = false;
         }
 
+        // test is altijd correct op het moment dus moet gefixed worden nog
+
         $this->assertEquals(true, $ans);
     }
 

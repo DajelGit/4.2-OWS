@@ -49,9 +49,6 @@ if (!isset($board[$from])) {
                     $_SESSION['error'] = 'Tile must slide';
                 }
             }
-            // elseif ($tile[1] == "G") {
-            //     echo "aaaaaaaaaaaaaaaaaaaaaaaaaaa";
-            // }
         }
     }
     if (isset($_SESSION['error'])) {
