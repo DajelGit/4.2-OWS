@@ -274,7 +274,7 @@ function AvailableSpiderPositions($board, $player, $to, $from)
 //     return $count;
 // }
 
-function checkCanPass($board, $player)
+function checkCanPass($board, $player, $hand)
 {
     //check if allowed to pass or not
     foreach (array_keys($board) as $pos) {
@@ -284,6 +284,10 @@ function checkCanPass($board, $player)
             if (countNeighBours($pos, $board) != 5) {
                 return false;
             }
+        }
+
+        if (array_sum($hand) > 0) {
+            return false;
         }
 
         return true;

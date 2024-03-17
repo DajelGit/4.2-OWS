@@ -24,9 +24,10 @@ final class GameStateTest extends TestCase
             '-1,-2' => [['1', 'A']],
         ];
 
+        $hand = [];
         $player = 0;
 
-        $ans = checkCanPass($board, $player);
+        $ans = checkCanPass($board, $player, $hand);
 
         $this->assertEquals(false, $ans);
     }
