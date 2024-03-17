@@ -187,7 +187,7 @@ function AvailableGrasshopperPositions($board, $player, $to, $from)
 
 function AvailableAntPositions($board, $player, $to, $from)
 {
-    if (isset($board[$to])) {
+    if (isset($board[$to]) || ($from == $to)) {
         return false;
     }
     if (count($board) && !hasNeighBour($to, $board)) {
