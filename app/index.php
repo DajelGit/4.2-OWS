@@ -3,9 +3,9 @@ session_start();
 
 include_once 'util.php';
 
-if (!isset($_SESSION['board'])) {
+if (!isset ($_SESSION['board'])) {
     header('Location: restart.php');
-    exit(0);
+    exit (0);
 }
 $board = $_SESSION['board'];
 $player = $_SESSION['player'];
@@ -189,7 +189,7 @@ if (!count($to)) {
         <input type="submit" value="Restart">
     </form>
     <strong>
-        <?php if (isset($_SESSION['error'])) {
+        <?php if (isset ($_SESSION['error'])) {
             echo $_SESSION['error'];
         }
         unset($_SESSION['error']); ?>

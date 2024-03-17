@@ -72,7 +72,7 @@ function slide($board, $from, $to)
 
 function AvailablePositions($board, $hand, $player, $to)
 {
-    if (isset($board[$to])) {
+    if (isset ($board[$to])) {
         return false;
     }
     if (count($board) && !hasNeighBour($to, $board)) {
@@ -115,7 +115,7 @@ function getNeighbours($pos)
 
 function AvailableGrasshopperPositions($board, $player, $to, $from)
 {
-    if (isset($board[$to]) || ($from == $to)) {
+    if (isset ($board[$to]) || ($from == $to)) {
         return false;
     }
     if (count($board) && !hasNeighBour($to, $board)) {
@@ -147,7 +147,7 @@ function AvailableGrasshopperPositions($board, $player, $to, $from)
             if ($cords == $to) {
                 break;
             }
-            if (!isset($board[$cords])) {
+            if (!isset ($board[$cords])) {
                 //echo "$cords zijn empty\n";
                 return false;
             }
@@ -165,7 +165,7 @@ function AvailableGrasshopperPositions($board, $player, $to, $from)
             if ($cords == $to) {
                 break;
             }
-            if (!isset($board[$cords])) {
+            if (!isset ($board[$cords])) {
                 //echo "$cords zijn empty\n";
                 return false;
             }
@@ -187,7 +187,7 @@ function AvailableGrasshopperPositions($board, $player, $to, $from)
 
 function AvailableAntPositions($board, $player, $to, $from)
 {
-    if (isset($board[$to]) || ($from == $to)) {
+    if (isset ($board[$to]) || ($from == $to)) {
         return false;
     }
     if (count($board) && !hasNeighBour($to, $board)) {
@@ -199,7 +199,7 @@ function AvailableAntPositions($board, $player, $to, $from)
 
 function AvailableSpiderPositions($board, $player, $to, $from)
 {
-    if (isset($board[$to]) || ($from == $to)) {
+    if (isset ($board[$to]) || ($from == $to)) {
         return false;
     }
     if (count($board) && !hasNeighBour($to, $board)) {
@@ -276,5 +276,69 @@ function AvailableSpiderPositions($board, $player, $to, $from)
 
 function checkCanPass($board, $player)
 {
-    return true;
+    //check if allowed to pass or not
+    foreach (array_keys($board) as $pos) {
+        $tile = array_pop($board[$pos]);
+
+        if ($tile[0] == $player && $tile[1] != "G") {
+            if (countNeighBours($pos, $board) != 5) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+}
+
+function countNeighBours($from, $board)
+{
+    $counter = 0;
+    foreach (array_keys($board) as $to) {
+        if (isNeighbour($from, $to)) {
+            $counter++;
+        }
+    }
+    // -1 omdat hij zichzelf ($from) ook meetelt
+    return $counter - 1;
+}
+
+function checkSurrounded($board, $player)
+{
+    //check if queen is surrounded by 6 tiles
+    foreach (array_keys($board) as $pos) {
+        $tile = array_pop($board[$pos]);
+
+        if ($tile[0] == $player && $tile[1] == "Q") {
+            if (countNeighBours($pos, $board) == 6) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+function checkIfDraw($board)
+{
+    //check if both players have queen surrounded at the same time.
+    $amountStuck = 0;
+    foreach (array_keys($board) as $pos) {
+        $tile = array_pop($board[$pos]);
+        if ($tile[0] == 0 && $tile[1] == 'Q') {
+            if (countNeighBours($pos, $board) == 6) {
+                //queen stuck for p1
+                $amountStuck++;
+            }
+        }
+        if ($tile[0] == 1 && $tile[1] == 'Q') {
+            if (countNeighBours($pos, $board) == 6) {
+                //queen stuck for p2
+                $amountStuck++;
+            }
+        }
+    }
+    if ($amountStuck == 2) {
+        return true;
+    }
+
+    return false;
 }
