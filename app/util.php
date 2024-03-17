@@ -199,12 +199,82 @@ function AvailableAntPositions($board, $player, $to, $from)
 
 function AvailableSpiderPositions($board, $player, $to, $from)
 {
-    if (isset($board[$to])) {
+    if (isset($board[$to]) || ($from == $to)) {
         return false;
     }
     if (count($board) && !hasNeighBour($to, $board)) {
         return false;
     }
 
+    return true;
+}
+
+// function countSteps($from, $to)
+// {
+//     $f = explode(',', $from);
+//     $fx = $f[0];
+//     $fy = $f[1];
+//     $t = explode(',', $to);
+//     $tx = $t[0];
+//     $ty = $t[1];
+
+//     $aaa = getNeighbours($from);
+//     echo "getneighbours: $aaa";
+
+//     $count = 0;
+
+//     return $count;
+// }
+
+// function countTiles($from, $to)
+// {
+//     $f = explode(',', $from);
+//     $fx = $f[0];
+//     $fy = $f[1];
+//     $t = explode(',', $to);
+//     $tx = $t[0];
+//     $ty = $t[1];
+
+//     $count = 0;
+
+//     if ($fx != $tx) {
+//         if ($fx < $tx) {
+//             // inc = increment
+//             $inc = 1;
+//         } else {
+//             $inc = -1;
+//         }
+
+//         while ($fx != $tx) {
+//             $fx = $fx + $inc;
+//             $cords = "$fx,$fy";
+//             if ($cords == $to) {
+//                 break;
+//             }
+//             $count++;
+//         }
+//     }
+//     if ($fy != $ty) {
+//         if ($fy < $ty) {
+//             $inc = 1;
+//         } else {
+//             $inc = -1;
+//         }
+
+//         while ($fy != $ty) {
+//             $fy = $fy + $inc;
+//             $cords = "$fx,$fy";
+//             if ($cords == $to) {
+//                 break;
+//             }
+//             $count++;
+//         }
+//     }
+
+//     return $count;
+// }
+
+function checkCanPass($board, $player)
+{
     return true;
 }

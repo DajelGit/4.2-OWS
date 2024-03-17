@@ -23,11 +23,12 @@ final class SpiderTest extends TestCase
         ];
 
         $player = 0;
-        $to = '-1,3';
-        $from = '0,-1';
+        $to = '-2,2';
+        $from = '0,1';
 
-        // *tijdelijk*
-        if (AvailableSpiderPositions($board, $player, $to, $from) === true && countTiles($from, $to) == 3) {
+        // $aaa = countSteps($from, $to);
+        // echo "aaaaaaaaaaaaaaaaaaaa= $aaa\n";
+        if (AvailableSpiderPositions($board, $player, $to, $from) === true && countSteps($from, $to) == 3) {
             $ans = true;
         } else {
             $ans = false;
