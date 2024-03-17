@@ -88,36 +88,99 @@ function AvailablePositions($board, $hand, $player, $to)
     return true;
 }
 
+function getNeighbours($pos)
+{
+    $posNeighbours = [];
+    [$x, $y] = explode(',', $pos);
+    foreach ($GLOBALS['OFFSETS'] as [$dx, $dy]) {
+        $nx = $x + $dx;
+        $ny = $y + $dy;
+        $posNeighbours = "$nx, $ny";
+    }
+    return $posNeighbours;
+}
+
+// na een half uur ben ik er achter gekomen dat isset een ding is ;-;
+// function isEmpty($board, $from)
+// {
+//     $tile = array_pop($board[$from]);
+//     $tiles_array = array("Q", "A", "B", "S", "G");
+
+//     if (in_array($tile[1], $tiles_array)) {
+//         return false;
+//     } else {
+//         return true;
+//     }
+// }
+
 function AvailableGrasshopperPositions($board, $player, $to, $from)
 {
-    if (isset($board[$to])) {
+    if (isset($board[$to]) || ($from == $to)) {
         return false;
     }
     if (count($board) && !hasNeighBour($to, $board)) {
         return false;
     }
 
-    // $f = explode(',', $from);
-    // $fx = $f[0];
-    // $fy = $f[1];
-    // $t = explode(',', $to);
-    // $tx = $t[0];
-    // $ty = $t[1];
+    $f = explode(',', $from);
+    $fx = $f[0];
+    $fy = $f[1];
+    $t = explode(',', $to);
+    $tx = $t[0];
+    $ty = $t[1];
 
-    // if ($fx != $tx) {
-    //     if ($fx > $tx) {
-    //         $inc = 1;
-    //     } else {
-    //         $inc = -1;
-    //     }
+    //echo "initial from: $from\n";
+    //echo "initial to: $to\n";
 
-    //     while ($fx != $tx) {
-    //         $fx = $fx + $inc;
-    //         // check of fx empty is nu
-    //         // if empty -> return false
-    //         // else return true
-    //     }
-    // }
+    if ($fx != $tx) {
+        if ($fx < $tx) {
+            // inc = increment
+            $inc = 1;
+        } else {
+            $inc = -1;
+        }
+
+        //echo "voor while 1: fx $fx, tx $tx\n";
+        while ($fx != $tx) {
+            $fx = $fx + $inc;
+            $cords = "$fx,$fy";
+            if ($cords == $to) {
+                break;
+            }
+            if (!isset($board[$cords])) {
+                //echo "$cords zijn empty\n";
+                return false;
+            }
+        }
+    } elseif ($fy != $ty) {
+        if ($fy < $ty) {
+            $inc = 1;
+        } else {
+            $inc = -1;
+        }
+        //echo "voor while 2: fy $fy, ty $ty\n";
+        while ($fy != $ty) {
+            $fy = $fy + $inc;
+            $cords = "$fx,$fy";
+            if ($cords == $to) {
+                break;
+            }
+            if (!isset($board[$cords])) {
+                //echo "$cords zijn empty\n";
+                return false;
+            }
+        }
+    }
+
+    //check of over minstens 1 steen wordt gesprongen
+    $toNeigbours = getNeighbours($to);
+    $fromNeighbours = getNeighbours($from);
+
+    foreach ($fromNeighbours as $neighbour) {
+        if (!in_array($neighbour, $toNeigbours)) {
+            return true;
+        }
+    }
 
     return true;
 }
