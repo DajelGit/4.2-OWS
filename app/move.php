@@ -12,7 +12,7 @@ $board = $_SESSION['board'];
 $hand = $_SESSION['hand'][$player];
 unset($_SESSION['error']);
 
-if (!isset($board[$from])) {
+if (!isset ($board[$from])) {
     $_SESSION['error'] = 'Board position is empty';
 } elseif ($board[$from][count($board[$from]) - 1][0] != $player) {
     $_SESSION['error'] = "Tile is not owned by player";
@@ -42,23 +42,35 @@ if (!isset($board[$from])) {
         } else {
             if ($from == $to) {
                 $_SESSION['error'] = 'Tile must move';
-            } elseif (isset($board[$to]) && $tile[1] != "B") {
+            } elseif (isset ($board[$to]) && $tile[1] != "B") {
                 $_SESSION['error'] = 'Tile not empty';
             } elseif ($tile[1] == "Q" || $tile[1] == "B") {
                 if (!slide($board, $from, $to)) {
                     $_SESSION['error'] = 'Tile must slide';
                 }
+            } elseif ($tile[1] == "G") {
+                if (!AvailableGrasshopperPositions($board, $player, $from, $to)) {
+                    $_SESSION['error'] = 'Position not available';
+                }
+            } elseif ($tile[1] == "A") {
+                if (!AvailableAntPositions($board, $player, $from, $to)) {
+                    $_SESSION['error'] = 'Position not available';
+                }
+            } elseif ($tile[1] == "S") {
+                if (!AvailableSpiderPositions($board, $player, $from, $to)) {
+                    $_SESSION['error'] = 'Position not available';
+                }
             }
         }
     }
-    if (isset($_SESSION['error'])) {
-        if (isset($board[$from])) {
+    if (isset ($_SESSION['error'])) {
+        if (isset ($board[$from])) {
             array_push($board[$from], $tile);
         } else {
             $board[$from] = [$tile];
         }
     } else {
-        if (isset($board[$to])) {
+        if (isset ($board[$to])) {
             array_push($board[$to], $tile);
         } else {
             $board[$to] = [$tile];
