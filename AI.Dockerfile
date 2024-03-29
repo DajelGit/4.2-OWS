@@ -8,4 +8,4 @@ RUN pip install Flask==3.0.0
 
 RUN git clone https://github.com/hanze-hbo-ict/itvb23ows-hive-ai.git .
 
-CMD [ "flask", "--app", "app", "run", "--host", "0.0.0.0", "--debug"]
+CMD [ "flask", "--app", "app", "run", "--host=0.0.0.0"]
