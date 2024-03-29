@@ -17,10 +17,8 @@ services:
     expose:
       - '3306'
 
-  jenkins:
-    image: jenkins/jenkins:lts
+  ai-docker:
+    build:
+      dockerfile: AI.Dockerfile
     ports:
-      - "8081:8080"
-      - "50000:50000"
-    volumes:
-      - jenkins-data:/var/jenkins_home
+      - "3030:3030"
