@@ -185,6 +185,9 @@ if (!count($to)) {
     <form method="post" action="pass.php">
         <input type="submit" value="Pass">
     </form>
+    <form method="post" action="ai.php">
+        <input type="submit" value="getAIMove">
+    </form>
     <form method="post" action="restart.php">
         <input type="submit" value="Restart">
     </form>
