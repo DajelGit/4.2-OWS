@@ -19,6 +19,7 @@ services:
 
   ai-docker:
     build:
+      context: .
       dockerfile: AI.Dockerfile
     ports:
-      - "3030:3030"
+      - "5000:5000"
